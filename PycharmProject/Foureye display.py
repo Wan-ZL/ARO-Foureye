@@ -2,6 +2,7 @@ import pickle
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+from matplotlib.ticker import StrMethodFormatter
 
 
 
@@ -300,8 +301,8 @@ def DD_IPI_def_strat_count():
     plt.xticks(fontsize=axis_size)
     plt.yticks(fontsize=axis_size)
     plt.tight_layout()
-    plt.savefig("Figure/DD-IPI-def-Strat.eps", dpi=figure_dpi)
-
+    # plt.savefig("Figure/DD-IPI-def-Strat.eps", dpi=figure_dpi)
+    plt.show()
 
 # Attacker Strategy DD-PI
 def DD_PI_att_strat_count():
@@ -343,8 +344,8 @@ def DD_PI_att_strat_count():
     plt.xticks(fontsize=axis_size)
     plt.yticks(fontsize=axis_size)
     plt.tight_layout()
-    plt.savefig("Figure/DD-PI-att-Strat.eps", dpi=figure_dpi)
-
+    # plt.savefig("Figure/DD-PI-att-Strat.eps", dpi=figure_dpi)
+    plt.show()
 
 # Defender Strategy DD-PI
 def DD_PI_def_strat_count():
@@ -514,7 +515,8 @@ def No_DD_PI_att_strat_count():
     plt.xticks(fontsize=axis_size)
     plt.yticks(fontsize=axis_size)
     plt.tight_layout()
-    plt.savefig("Figure/No-DD-PI-att-Strat.eps", dpi=figure_dpi)
+    # plt.savefig("Figure/No-DD-PI-att-Strat.eps", dpi=figure_dpi)
+    plt.show()
 
 
 # Defender Strategy No-DD-PI
@@ -644,7 +646,7 @@ def display_def_uncertain(schemes):
 
 # IDS FPR
 def display_FPR(schemes):
-    plt.figure(figsize=(figure_width, figure_high + 1))
+    plt.figure(figsize=(figure_width, figure_high+ 0.75))
     for schemes_index in range(len(schemes)):
         the_file = open("data/" + schemes[schemes_index] + "/R4/FPR.pkl", "rb")
         FPR_history = pickle.load(the_file)
@@ -671,14 +673,21 @@ def display_FPR(schemes):
 
         plt.plot(x_values, y_values, linestyle=all_linestyle[schemes_index], label=schemes[schemes_index],
                  linewidth=figure_linewidth, marker=marker_list[schemes_index], markevery=50, markersize=marker_size)
-    plt.legend(prop={"size": legend_size}, ncol=2, bbox_to_anchor=(0, 1, 1, 0),
-               loc='lower left', fontsize='large', mode="expand")
+    plt.legend(prop={"size": legend_size},
+               ncol=4,
+               bbox_to_anchor=(-0.13, 1, 1.15, 0),
+               loc='lower left',
+               mode="expand")
     plt.xlabel("number of games", fontsize=font_size)
     plt.ylabel("FPR", fontsize=font_size)
     plt.xticks(fontsize=axis_size)
     plt.yticks(fontsize=axis_size)
     plt.tight_layout()
-    plt.savefig("Figure/FPR-NG.eps", dpi=figure_dpi)
+    os.makedirs("Figure/TPR_or_FPR", exist_ok=True)
+    os.makedirs("Figure (PNG)/TPR_or_FPR", exist_ok=True)
+    plt.savefig("Figure/TPR_or_FPR/FPR-NG.eps", dpi=figure_dpi)
+    plt.savefig("Figure (PNG)/TPR_or_FPR/FPR-NG.png", dpi=figure_dpi)
+    plt.show()
 
 
 # IDS TPR
@@ -720,7 +729,11 @@ def display_TPR(schemes):
     plt.xticks(fontsize=axis_size)
     plt.yticks(fontsize=axis_size)
     plt.tight_layout()
-    plt.savefig("Figure/TPR-NG.eps", dpi=figure_dpi)
+    os.makedirs("Figure/TPR_or_FPR", exist_ok=True)
+    os.makedirs("Figure (PNG)/TPR_or_FPR", exist_ok=True)
+    plt.savefig("Figure/TPR_or_FPR/TPR-NG.eps", dpi=figure_dpi)
+    plt.savefig("Figure (PNG)/TPR_or_FPR/TPR-NG.png", dpi=figure_dpi)
+    plt.show()
 
 
 # ROC
@@ -1359,7 +1372,7 @@ def display_hitting_prob(schemes):
     plt.show()
 
 
-def display_legend(schemes):
+def display_legend_scheme(schemes):
     fig = plt.figure()
     figlegend = plt.figure(figsize=(8.1, 0.6))
     ax = fig.add_subplot(111)
@@ -1375,6 +1388,37 @@ def display_legend(schemes):
     os.makedirs("Figure (PNG)/legend", exist_ok=True)
     plt.savefig("Figure/legend/the-legend.eps", dpi=figure_dpi)
     plt.savefig("Figure (PNG)/legend/the-legend.png", dpi=figure_dpi)
+    fig.show()
+    figlegend.show()
+
+
+def display_legend_strat():
+    fig = plt.figure()
+    figlegend = plt.figure(figsize=(14.7, 0.6))
+    ax = fig.add_subplot(111)
+
+
+    lines = []
+    for index in range(8):
+        line, = ax.plot(np.arange(8), linestyle=all_linestyle[index], label=f"Stra {index + 1}")
+        lines.append(line)
+    figlegend.legend(handles=lines,prop={"size": legend_size}, ncol=8)
+    # for index in range(8):
+    #     plt.plot(range(max_length),
+    #              average_att_strat[:, index],
+    #              linestyle=all_linestyle[index],
+    #              label=f"Stra {index + 1}")
+    #
+    # plt.legend(prop={"size": legend_size},
+    #            ncol=4,
+    #            bbox_to_anchor=(0, 1, 1, 0),
+    #            loc='lower left',
+    #            mode="expand")
+
+    os.makedirs("Figure/legend", exist_ok=True)
+    os.makedirs("Figure (PNG)/legend", exist_ok=True)
+    plt.savefig("Figure/legend/the-legend_strat.eps", dpi=figure_dpi)
+    plt.savefig("Figure (PNG)/legend/the-legend_start.png", dpi=figure_dpi)
     fig.show()
     figlegend.show()
 
@@ -1521,12 +1565,11 @@ def defstrat_success_counter_DDIPI():
 
 
 def def_cost_per_strategy_DDIPI():
-    the_file = open("data/DD-IPI/R6/def_cost_per_strat.pkl", "rb")
+    the_file = open("data/DD-PI/R6/def_cost_per_strat.pkl", "rb")
     def_per_strat_cost_allresult = pickle.load(the_file)
     the_file.close()
 
-    plt.figure(figsize=(figure_width, figure_high + 1))
-    succ_counter_sum = np.zeros((6, 8))
+    plt.figure(figsize=(figure_width, figure_high+0.75))
 
     max_length = 0
     for key in def_per_strat_cost_allresult.keys():
@@ -1545,22 +1588,26 @@ def def_cost_per_strategy_DDIPI():
 
         average_def_cost = np.append(average_def_cost, np.reshape(sum_on_index / number_on_index, (1, -1)), axis=0)
 
-    average_def_cost = average_def_cost[1:]
-    for strat_id in range(average_def_cost.shape[1]):
+    average_def_cost = average_def_cost[1:100]
+    average_def_cost[0,7] = 0
+    for strat_id in range(4,average_def_cost.shape[1]):
         plt.plot(np.arange(average_def_cost.shape[0]), average_def_cost[:,strat_id],
                      label="DS"+str(strat_id+1),
                      linewidth=figure_linewidth)
     plt.legend(prop={"size": 15}, ncol=4, bbox_to_anchor=(0, 1, 1, 0), loc='lower left', fontsize='large',mode="expand")
 
-    plt.xlabel("Number of Game", fontsize=font_size)
-    plt.ylabel("Average Defense Cost ", fontsize=font_size)
+    plt.xlabel("number of games", fontsize=font_size)
+    plt.ylabel("Defense Cost ", fontsize=font_size)
+    plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:,.2f}'))
     plt.xticks(fontsize=axis_size)
     plt.yticks(fontsize=axis_size)
+    axes = plt.gca()
+    axes.set_ylim([0, 0.5])
     plt.tight_layout()
     os.makedirs("Figure/def_for_review", exist_ok=True)
     os.makedirs("Figure (PNG)/def_for_review", exist_ok=True)
-    plt.savefig("Figure/def_for_review/def_cost_per_strat.eps", dpi=figure_dpi)
-    plt.savefig("Figure (PNG)/def_for_review/def_cost_per_strat.png", dpi=figure_dpi)
+    plt.savefig("Figure/def_for_review/def_cost_per_strat_DDPI.eps", dpi=figure_dpi)
+    plt.savefig("Figure (PNG)/def_for_review/def_cost_per_strat_DDPI.png", dpi=figure_dpi)
     plt.show()
 
 
@@ -1644,8 +1691,11 @@ if __name__ == '__main__':
     schemes = ["DD-IPI", "DD-PI", "No-DD-IPI", "No-DD-PI"]
     # schemes = ["DD-IPI"]
 
+    # display_FPR(schemes)
+    # display_TPR(schemes)
     # display_hitting_prob(schemes)
-    # display_legend(schemes)
+    # display_legend_scheme(schemes)
+    # display_legend_strat()
     # display_MTTSF(schemes)
     # varying_vul_att_cost(schemes)
     # varying_vul_def_cost(schemes)
@@ -1656,8 +1706,12 @@ if __name__ == '__main__':
     # varying_vul_FPR(schemes)
     # varying_vul_TPR(schemes)
     # defstrat_success_counter_DDIPI()
-    def_cost_per_strategy_DDIPI()
-    #
+    # def_cost_per_strategy_DDIPI()
+    # DD_IPI_def_strat_count()
+    # DD_PI_att_strat_count()
+    No_DD_PI_att_strat_count()
+
+
     # sens_analy_MTTSF(schemes, sensitive_analysis, sen_ana_X_label)
     # sens_analy_att_uncertain(schemes, sensitive_analysis, sen_ana_X_label)
     # sens_analy_def_uncertain(schemes, sensitive_analysis, sen_ana_X_label)

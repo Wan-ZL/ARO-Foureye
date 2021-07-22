@@ -4,12 +4,12 @@ display = False
 
 if __name__ == '__main__':
     start = time.time()
-    simulation_time = 100
+    simulation_time = 1000
     # game_start()
     run_sumulation_fixed_setting("DD-IPI", True, True, simulation_time)
-    # run_sumulation_fixed_setting("DD-PI", True, False, simulation_time)
-    # run_sumulation_fixed_setting("No-DD-IPI", False, True, simulation_time)
-    # run_sumulation_fixed_setting("No-DD-PI", False, False, simulation_time)
+    run_sumulation_fixed_setting("DD-PI", True, False, simulation_time)
+    run_sumulation_fixed_setting("No-DD-IPI", False, True, simulation_time)
+    run_sumulation_fixed_setting("No-DD-PI", False, False, simulation_time)
 
     # Varying Vulnerability Upper Bound
     # run_sumulation_group_varying_vul("DD-IPI", True, True, simulation_time)

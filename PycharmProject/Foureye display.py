@@ -1705,11 +1705,11 @@ if __name__ == '__main__':
     # varying_vul_def_uncertain(schemes)
     # varying_vul_FPR(schemes)
     # varying_vul_TPR(schemes)
-    # defstrat_success_counter_DDIPI()
+    defstrat_success_counter_DDIPI()
     # def_cost_per_strategy_DDIPI()
     # DD_IPI_def_strat_count()
     # DD_PI_att_strat_count()
-    No_DD_PI_att_strat_count()
+    # No_DD_PI_att_strat_count()
 
 
     # sens_analy_MTTSF(schemes, sensitive_analysis, sen_ana_X_label)

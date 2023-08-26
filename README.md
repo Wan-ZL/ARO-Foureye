@@ -10,3 +10,6 @@ Link: https://ieeexplore.ieee.org/abstract/document/9559403
 A Survey of Defensive Deception: Approaches Using Game Theory and Machine Learning
 
 Link: https://ieeexplore.ieee.org/abstract/document/9508449
+
+## Acknowledgment
+This work is partly supported by the Army Research Office under Grant Contract Number W911NF-20-2-0140. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.

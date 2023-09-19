@@ -20,5 +20,12 @@ Resisting Multiple Advanced Persistent Threats via Hypergame-Theoretic Defensive
 
 Link: https://ieeexplore.ieee.org/abstract/document/10040491
 
+# Cyber Deception for Mission Surveillance via Hypergame-Theoretic Deep Reinforcement Learning
+
+Systems of Unmanned Aerial Vehicles (UAVs) or drones are valuable for mission-critical systems aiming for surveillance, searching, rescuing, or delivery. Not surprisingly, such systems attract cyberattacks, including Denial-of-Service (DoS) attacks to overwhelm the resources of a mission drone (MD). How can we defend such UAV-based mission systems against DoS attacks? We adopt a cyber deception as a defense strategy in which honey drones (HDs) equipped with lightweight virtual machines can bait and divert potential DoS attacks. The attack and the deceptive defense hinge upon radio signal strength: The attacker selects potential victim MDs based on their signals, and an HD attracts the attacker from afar by emitting a stronger signal. However, a strong signal reduces battery life. We formulate an optimization problem for the attacker and defender to identify their respective strategies to meet system goals, such as maximizing mission performance while minimizing energy consumption. We propose a novel approach, called **HT-DRL**, to compute optimal strategies under uncertainty based on deep reinforcement learning (DRL) guided by hypergame theory (HT). This will achieve a systematic way to intelligibly deceive DoS attackers. We experimentally analyze the performance of diverse defense mechanisms under different attack strategies. While traditional DRL approaches can reach better solutions with a long convergence time, HT-DRL is effective early in the training period, resulting in a significant reduction of convergence time. Further, the HT-DRL-based honey drone approach outperforms existing non-HD counterparts up to two times better in mission performance while incurring significantly low energy consumption when attackers use diverse ways to choose their strategies.
+
+## Paper
+(Submitted to IEEE TDSC)
+
 # Acknowledgment
 This work is partly supported by the Army Research Office under Grant Contract Number W911NF-20-2-0140. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
